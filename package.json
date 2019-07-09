@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode development --config webpack.dev.js",
     "build:release": "webpack --mode production --config webpack.prod.js",
-    "build:watch": "webpack --progress --colors --watch"
+    "build:watch": "webpack --progress --colors --watch",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -30,8 +31,11 @@
     "@babel/preset-env": "^7.0.0-beta.42",
     "babel-loader": "^8.0.0-beta.2",
     "babel-preset-minify": "^0.5.0",
+    "jest": "^24.8.0",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "keycloak-js": "^6.0.1"
+  }
 }

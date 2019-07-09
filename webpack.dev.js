@@ -1,10 +1,11 @@
 const path = require('path');
+//[hash:8]
 module.exports = {
     entry: {
         'fgp-auth.js': './src/fgp-auth.js',
     },
     output: {
-        filename: '[name].bundle.[hash:8].js',
+        filename: '[name].bundle.dev.js',      
         path: path.resolve(__dirname, 'dist')
     },
     module: {
@@ -21,8 +22,8 @@ module.exports = {
             }
         ]
     },
-    externals: {
-        
+    externals: { 
+        'keycloak-js': 'Keycloak',
     },
     devtool: 'source-map'
 };
