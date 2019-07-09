@@ -122,7 +122,7 @@ function () {
     value: function init(mode, config) {
       var _this = this;
 
-      var authObj;
+      var authObj = null;
 
       switch (mode) {
         case 'keycloak':

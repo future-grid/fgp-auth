@@ -22,6 +22,7 @@ module.exports = {
         ]
     },
     externals: {
+        'keycloak-js': 'Keycloak'
     },
     devtool: 'source-map'
 };

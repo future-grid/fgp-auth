@@ -35,7 +35,7 @@ export default class FgpAuth {
                     this.logout({
                         redirectUri: options.returnTo
                     });
-                }
+                };
 
                 authObj.init(config).success((authed) => {
                     if (authed) {
