@@ -106,6 +106,17 @@ module.exports = Keycloak;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -146,15 +157,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var keycloak_1 = __importDefault(__webpack_require__(/*! ../../node_modules/keycloak-js/dist/keycloak */ "../../node_modules/keycloak-js/dist/keycloak"));
+var operator_1 = __webpack_require__(/*! ./service/operator */ "./src/auth/service/operator.ts");
 var KeycloakAuth = /** @class */ (function () {
     function KeycloakAuth(props) {
         var _this = this;
         this.version = '1.0.0';
-        this.updateState = function (authenticated) {
+        this.updateState = function () {
             //
             var callback = _this.props.callback;
             var _a = _this.kc, token = _a.token, refreshToken = _a.refreshToken;
-            callback && token && callback(token);
+            callback && token && callback(token, new operator_1.KCAuthOperator(_this.kc));
         };
         this.foo = 'fgp';
         this.name = props.name;
@@ -165,9 +177,9 @@ var KeycloakAuth = /** @class */ (function () {
         var _this = this;
         var initOpts = this.props.initOpts;
         // all events
-        this.kc.onReady = this.updateState;
+        this.kc.onAuthSuccess = this.updateState;
         // init keycloak
-        this.kc.init(initOpts).success(function (authenticated) { return __awaiter(_this, void 0, void 0, function () {
+        this.kc.init(__assign({}, initOpts)).success(function (authenticated) { return __awaiter(_this, void 0, void 0, function () {
             var _a, token, tokenParsed, refreshToken, refreshTokenParsed;
             return __generator(this, function (_b) {
                 console.debug(authenticated);
@@ -187,6 +199,36 @@ var KeycloakAuth = /** @class */ (function () {
     return KeycloakAuth;
 }());
 exports.KeycloakAuth = KeycloakAuth;
+
+
+/***/ }),
+
+/***/ "./src/auth/service/operator.ts":
+/*!**************************************!*\
+  !*** ./src/auth/service/operator.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var KCAuthOperator = /** @class */ (function () {
+    function KCAuthOperator(authObj) {
+        this.authObj = authObj;
+    }
+    KCAuthOperator.prototype.logout = function () {
+        this.authObj.logout();
+    };
+    KCAuthOperator.prototype.getUserInfo = function () {
+        return this.authObj.loadUserInfo();
+    };
+    KCAuthOperator.prototype.refreshToken = function () {
+        return "";
+    };
+    return KCAuthOperator;
+}());
+exports.KCAuthOperator = KCAuthOperator;
 
 
 /***/ }),
