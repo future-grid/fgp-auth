@@ -4,14 +4,10 @@
   "description": "fgp-auth is a token based auth lib and base on \"auth0 and keycloak. ",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development --config webpack.dev.js",
-    "build:release": "webpack --mode production --config webpack.prod.js",
-    "build:watch": "webpack --progress --colors --watch",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/future-grid/fgp-auth.git"
+    "start": "webpack-dev-server --mode development",
+    "build:dev": "webpack --mode development --config webpack.config.dev.js",
+    "build:prod": "webpack --mode production --config webpack.config.prod.js",
+    "test": "echo \"Error: no text specified\" && exit 1"
   },
   "keywords": [
     "fgp",
@@ -20,21 +16,19 @@
     "auth0"
   ],
   "author": "eric@future-grid.com.au",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/future-grid/fgp-auth/issues"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/future-grid/fgp-auth.git"
+  },
+  "devDependencies": {
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
   },
   "homepage": "https://github.com/future-grid/fgp-auth#readme",
-  "devDependencies": {
-    "@babel/core": "^7.0.0-beta.42",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
-    "@babel/preset-env": "^7.0.0-beta.42",
-    "babel-loader": "^8.0.0-beta.2",
-    "babel-preset-minify": "^0.5.0",
-    "jest": "^24.8.0",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5"
-  },
   "dependencies": {
     "keycloak-js": "^6.0.1"
   }
