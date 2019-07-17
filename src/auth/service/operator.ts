@@ -1,4 +1,4 @@
-import { AuthOperator } from "../interfaces/auth.operator";
+import { AuthOperator } from "../auth.operator";
 import { KeycloakPromise } from "keycloak-js";
 
 export class KCAuthOperator implements AuthOperator {
@@ -18,9 +18,12 @@ export class KCAuthOperator implements AuthOperator {
     }
 
 
-    refreshToken(): string {
+    refreshToken(): KeycloakPromise<boolean, boolean> {
+        return this.authObj.updateToken(70);
+    }
 
-        return "";
+    getAuth() :Keycloak.KeycloakInstance{
+        return this.authObj;
     }
 
 }

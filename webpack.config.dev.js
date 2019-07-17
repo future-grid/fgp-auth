@@ -16,14 +16,18 @@ module.exports = {
             }
         ]
     },
-    externals:{
-        '../../node_modules/keycloak-js/dist/keycloak': 'Keycloak'
-    },
+    // externals:{
+    //     'keycloak-js': 'Keycloak'
+    // },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        library: 'lib',
+        libraryTarget: "umd",
+        umdNamedDefine: true,
+        globalObject: "(typeof self !== 'undefined' ? self : this)"
     }
 };

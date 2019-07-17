@@ -2,12 +2,12 @@
   "name": "fgp-auth",
   "version": "1.0.0",
   "description": "fgp-auth is a token based auth lib and base on \"auth0 and keycloak. ",
-  "main": "index.js",
+  "main": "dist/fgp-auth.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build:dev": "webpack --mode development --config webpack.config.dev.js",
     "build:prod": "webpack --mode production --config webpack.config.prod.js",
-    "test": "echo \"Error: no text specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "fgp",
@@ -22,12 +22,16 @@
     "url": "git+https://github.com/future-grid/fgp-auth.git"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"
   },
+  "types": "./dist/index.d.ts",
   "homepage": "https://github.com/future-grid/fgp-auth#readme",
   "dependencies": {
     "keycloak-js": "^6.0.1"

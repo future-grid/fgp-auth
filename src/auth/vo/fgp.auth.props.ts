@@ -1,5 +1,6 @@
-import { authCallback } from "../kecloak.auth";
+import { AuthCallback } from "../auth.factory";
+
 
 export class AuthProps {
-    constructor(public name: string, public initOpts: any, public callback: authCallback) { }
+    constructor(public name: string, public initOpts: any, public callback: AuthCallback, public errorCallback: any) { }
 }

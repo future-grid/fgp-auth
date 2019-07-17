@@ -1,8 +1,6 @@
 export interface AuthOperator{
     logout(): void;
-
     getUserInfo(): any;
-
-
-    refreshToken(): string;
+    refreshToken(): any;
+    getAuth(): any;
 }

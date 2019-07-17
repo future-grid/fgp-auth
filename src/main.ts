@@ -1,13 +1,16 @@
-import { KeycloakAuth, authCallback } from "./auth/kecloak.auth";
+
 import { AuthProps } from "./auth/vo/fgp.auth.props";
-import { AuthOperator } from "./auth/interfaces/auth.operator";
+import { AuthOperator } from "./auth/auth.operator";
 import { KeycloakPromise } from "keycloak-js";
+import { Auth } from "./auth/auth";
+import { AuthFactory, AuthCallback } from "./auth/auth.factory";
+import { Auths } from "./auth/auth.types";
 
 
 
 let op:AuthOperator;
 
-const callbackFnc: authCallback = (token: string, operator:AuthOperator) => {
+const callbackFnc: AuthCallback = (token: string, operator:AuthOperator) => {
     let infoDom = document.createElement("h1");
     infoDom.innerHTML = token;
     document.body.append(infoDom);
@@ -25,9 +28,11 @@ let props: AuthProps = new AuthProps('fgp-auth-kc', {
     },
     "confidential-port": 0,
     "clientId": "office"
-}, callbackFnc);
+}, callbackFnc, ()=>{
+    
+});
 
-let fgpAuth: KeycloakAuth = new KeycloakAuth(props);
+let fgpAuth: Auth = new AuthFactory(Auths.KC, props).getAuth();
 
 fgpAuth.init();
 

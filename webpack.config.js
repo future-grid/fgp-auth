@@ -17,7 +17,7 @@ module.exports = {
         ]
     },
     externals:{
-        '../../node_modules/keycloak-js/dist/keycloak': 'Keycloak'
+        'keycloak-js': 'Keycloak'
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
