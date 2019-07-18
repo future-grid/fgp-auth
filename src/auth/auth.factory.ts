@@ -1,9 +1,9 @@
 import { Auth } from "./auth";
 import { AuthProps } from "./vo/fgp.auth.props";
 import { KeycloakAuth } from "./impls/keycloak.auth";
-import { Auths }  from './auth.types';
+import { Auths } from './auth.types';
 
-export type AuthCallback = (token:string, operator:any) => any;
+export type AuthCallback = (token: string, operator: any) => any;
 
 export class AuthFactory {
 
@@ -12,19 +12,17 @@ export class AuthFactory {
     constructor(type: string, props: AuthProps) {
         if (type === Auths.KC && props) {
             this.auth = new KeycloakAuth(props);
+        } else if (type === Auths.Auth0 && props) {
+            console.warn("not implement yet!");
         } else {
-            this.auth = {
-                init: () => {
-                    // not support
-                },
-                updateState: () => {
-                    // not support
-                }
-            };
+            console.error("auth type not found!", type);
         }
     }
 
-    getAuth() {
+    /**
+     *  get auth object
+     */
+    getAuth(): Auth {
         return this.auth;
     }
 }

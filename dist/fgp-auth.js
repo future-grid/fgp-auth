@@ -1715,17 +1715,16 @@ var AuthFactory = /** @class */ (function () {
         if (type === auth_types_1.Auths.KC && props) {
             this.auth = new keycloak_auth_1.KeycloakAuth(props);
         }
+        else if (type === auth_types_1.Auths.Auth0 && props) {
+            console.warn("not implement yet!");
+        }
         else {
-            this.auth = {
-                init: function () {
-                    // not support
-                },
-                updateState: function () {
-                    // not support
-                }
-            };
+            console.error("auth type not found!", type);
         }
     }
+    /**
+     *  get auth object
+     */
     AuthFactory.prototype.getAuth = function () {
         return this.auth;
     };
