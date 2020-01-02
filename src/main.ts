@@ -20,7 +20,7 @@ const callbackFnc: AuthCallback = (token: string, operator:AuthOperator) => {
 
 let props: AuthProps = new AuthProps('fgp-auth-kc', {
     "realm": "fgp",
-    "auth-server-url": "https://fgp-auth.auth.10.1.14.69.xip.io/auth",
+    "auth-server-url": "http://10.1.14.69:32621/auth",
     "ssl-required": "external",
     "resource": "office",
     "credentials": {
