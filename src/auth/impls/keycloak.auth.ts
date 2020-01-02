@@ -28,12 +28,10 @@ export class KeycloakAuth implements Auth {
 
         // init keycloak
         this.kc.init({ ...initOpts }).success(authenticated => {
-            // console.debug(authenticated);
             if (!authenticated) {
                 this.kc.login();
             } else {
                 const { token, tokenParsed, refreshToken, refreshTokenParsed } = this.kc;
-                // console.debug(tokenParsed, refreshTokenParsed);
             }
         }).error(error => {
             console.error(error);
@@ -50,7 +48,7 @@ export class KeycloakAuth implements Auth {
         const kco = new KCAuthOperator(this.kc);
 
         callback && token && callback(token, kco);
-
+        // refresh token automatically 
         setInterval(() => {
             kco.refreshToken().success((refreshed) => {
                 // 
@@ -61,7 +59,7 @@ export class KeycloakAuth implements Auth {
                     callback && token && callback(token, kco);
                 }else{
                     console.warn('Token not refreshed, valid for '
-                            + Math.round(kco.getAuth().tokenParsed.exp + kco.getAuth().timeSkew - new Date().getTime() / 1000) + ' seconds');
+                            + Math.round(kco.getAuth().tokenParsed.exp + kco.getAuth().timeSkew - new Date().getTime() / 1000) + ' seconds.');
                 }
             }).error(() =>{
                 console.error("token refresh failed!");
