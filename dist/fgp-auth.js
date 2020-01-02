@@ -1794,6 +1794,7 @@ var KeycloakAuth = /** @class */ (function () {
             var token = _this.kc.token;
             var kco = new operator_1.KCAuthOperator(_this.kc);
             callback && token && callback(token, kco);
+            // refresh token automatically 
             setInterval(function () {
                 kco.refreshToken().success(function (refreshed) {
                     // 
@@ -1805,7 +1806,7 @@ var KeycloakAuth = /** @class */ (function () {
                     }
                     else {
                         console.warn('Token not refreshed, valid for '
-                            + Math.round(kco.getAuth().tokenParsed.exp + kco.getAuth().timeSkew - new Date().getTime() / 1000) + ' seconds');
+                            + Math.round(kco.getAuth().tokenParsed.exp + kco.getAuth().timeSkew - new Date().getTime() / 1000) + ' seconds.');
                     }
                 }).error(function () {
                     console.error("token refresh failed!");
@@ -1825,13 +1826,11 @@ var KeycloakAuth = /** @class */ (function () {
         this.kc.onAuthSuccess = this.updateState;
         // init keycloak
         this.kc.init(__assign({}, initOpts)).success(function (authenticated) {
-            // console.debug(authenticated);
             if (!authenticated) {
                 _this.kc.login();
             }
             else {
                 var _a = _this.kc, token = _a.token, tokenParsed = _a.tokenParsed, refreshToken = _a.refreshToken, refreshTokenParsed = _a.refreshTokenParsed;
-                // console.debug(tokenParsed, refreshTokenParsed);
             }
         }).error(function (error) {
             console.error(error);
