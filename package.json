@@ -1,6 +1,6 @@
 {
   "name": "@future-grid/fgp-auth",
-  "version": "19.10.0",
+  "version": "19.10.1",
   "description": "fgp-auth is a token based auth lib and base on \"auth0 and keycloak. ",
   "main": "dist/fgp-auth.js",
   "scripts": {
